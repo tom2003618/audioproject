@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加拿大聯邦選舉與移民研究（長者易讀版）</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<nav class="sidebar">
+  <div class="brand">
+    <span class="flag">🍁</span>
+    <span class="brand-text"><b>加拿大選舉與移民研究</b>畢業論文分析報告（易讀版）</span>
+  </div>
+  <div class="fontctl">
+    <button onclick="changeFont(2)">字體放大 A+</button>
+    <button onclick="changeFont(-2)">字體縮小 A-</button>
+  </div>
+  <button class="nav-btn" data-target="overview"><span class="ic">🏠</span>首頁總覽</button>
+<button class="nav-btn" data-target="election"><span class="ic">🗳️</span>選舉走勢</button>
+<button class="nav-btn" data-target="prediction2025"><span class="ic">📈</span>2025年預測</button>
+<button class="nav-btn" data-target="demographics"><span class="ic">👥</span>人口年齡分佈</button>
+<button class="nav-btn" data-target="economy"><span class="ic">💰</span>經濟概況</button>
+<button class="nav-btn" data-target="gdpage"><span class="ic">📊</span>人均GDP同年齡</button>
+<button class="nav-btn" data-target="hkoccupation"><span class="ic">🇭🇰</span>香港人職業分析</button>
+<button class="nav-btn" data-target="xnlp"><span class="ic">💬</span>社交媒體情緒分析</button>
+<button class="nav-btn" data-target="factors"><span class="ic">⚖️</span>影響因素比較</button>
+<button class="nav-btn" data-target="education"><span class="ic">🎓</span>教育程度分析</button>
+<button class="nav-btn" data-target="generation"><span class="ic">🧑‍🤝‍🧑</span>年齡層投票模型</button>
+<button class="nav-btn" data-target="hksr"><span class="ic">🧓</span>香港長者移民分析</button>
+</nav>
+<main class="main">
+  <header class="dash-header">
+    <div class="dash-wing"><span class="wing-line"></span><span class="wing-dot"></span></div>
+    <div class="dash-title">
+      <h1>加拿大聯邦選舉與移民研究</h1>
+      <p class="dash-sub">畢業論文分析報告 · 易讀版</p>
+    </div>
+    <div class="dash-wing right"><span class="wing-line"></span><span class="wing-dot"></span></div>
+  </header>
+  <div class="audio-bar">
+    <button id="ttsPlay" class="audio-btn" onclick="ttsToggle()">🔊 讀俾我聽</button>
+    <button id="ttsStop" class="audio-btn secondary" onclick="ttsStop()">⏹ 停止</button>
+    <button id="ttsSpeed" class="audio-btn speed" onclick="ttsToggleSpeed()">🐢 慢速朗讀</button>
+    <span class="voice-status" id="voiceStatus">正在準備廣東話朗讀聲音…</span>
+  </div>
+  <section class="panel" id="overview">
+  <h2>加拿大聯邦選舉與移民研究</h2>
+  <p class="lede">呢個研究一共有十個部分，講解加拿大聯邦選舉（2000至2025年）嘅變化、
+  阿爾伯塔省、卑詩省、安大略省同魁北克省嘅人口同經濟狀況，
+  以及呢啲資料同香港人移民加拿大、搵工嘅關係。</p>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">個分析部分</div></div>
+    <div class="stat-card"><div class="stat-num">25 年</div><div class="stat-label">選舉歷史（2000至2025年）</div></div>
+    <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">個省份比較（AB／BC／ON／QC）</div></div>
+    <div class="stat-card"><div class="stat-num">誤差約6%</div><div class="stat-label">2025年預測同實際結果嘅差距</div></div>
+  </div>
+
+  <h3>目錄（撳左邊嘅按鈕去睇每一part）</h3>
+  <ul class="toc-list">
+    <li><b>選舉走勢</b> —— 全國各政黨得票率嘅歷史、2025年結果、各省投票情況</li>
+    <li><b>2025年預測</b> —— 用統計模型預測2025年選舉結果，同真實結果比較</li>
+    <li><b>人口年齡分佈</b> —— 加拿大唔同族群嘅年齡分佈</li>
+    <li><b>經濟概況</b> —— 四個省份嘅GDP、失業率、人工、職位空缺</li>
+    <li><b>人均GDP同年齡中位數</b> —— 四個省份嘅比較</li>
+    <li><b>香港人職業分析</b> —— 香港移民同「快速通道」（Express Entry）職業嘅關係</li>
+    <li><b>社交媒體情緒分析</b> —— 用Twitter（X）留言分析各政黨嘅民意</li>
+    <li><b>影響因素比較</b> —— 經濟 vs 社交媒體情緒，邊個更能預測選舉結果</li>
+    <li><b>教育程度分析</b> —— 邊種教育程度分類最能預測投票取向</li>
+    <li><b>年齡層投票模型</b> —— 預測2025年唔同年齡層嘅投票取向</li>
+  </ul>
+  <p class="note">💡 溫馨提示：每一頁嘅圖表同數字，都係直接嚟自已經運行完嘅研究筆記本（notebook），
+  唔係假設或者估計出嚟嘅。圖表上面嘅文字仍然係英文（因為圖表已經整定咗），
+  但係我哋喺圖表下面同上面加咗中文解釋，方便閱讀。</p>
+</section>
+<section class="panel" id="election">
+  <h2>選舉數據分析</h2>
+  <p class="lede">呢部分整理咗2000年到2025年，加拿大聯邦選舉每個政黨嘅得票率變化，
+  仲有各省份「實際投票人數」同「登記選民人數」嘅比較。</p>
+  <div class="src-links">
+    <span>資料來源：</span>
+    <a href="https://www.sfu.ca/~aheard/elections/1867-present.html" target="_blank">SFU大學歷史選舉資料</a>
+    <a href="https://researchbriefings.files.parliament.uk/documents/CBP-10244/CBP-10244.pdf" target="_blank">英國國會2025年簡報</a>
+  </div>
+  <div class="chart-grid">
+    <figure class="chart">
+      <img src="images/chart-01.png" alt="National vote share trend">
+      <figcaption>圖1 —— 全國各政黨得票率走勢（2000－2025年）</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-02.png" alt="2025 vote share bar chart">
+      <figcaption>圖2 —— 2025年全國各政黨得票率（長條圖）</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-03.png" alt="2021 vote share heatmap">
+      <figcaption>圖3a —— 2021年得票率熱力圖（顏色越深代表得票率越高）</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-04.png" alt="2025 vote share heatmap">
+      <figcaption>圖3b —— 2025年得票率熱力圖</figcaption>
+    </figure>
+  </div>
+  <figure class="chart">
+      <img src="images/chart-05.png" alt="Votes vs electors by province">
+      <figcaption>圖4 —— 各省份「實際投票人數」（藍色）同「登記選民人數」（橙色）比較</figcaption>
+    </figure>
+</section>
+<section class="panel" id="prediction2025">
+  <h2>2025年選舉預測 vs 真實結果</h2>
+  <p class="lede">呢部分用一種叫「貝葉斯階層隨機遊走模型」嘅統計方法（唔使理解太深奧，
+  簡單講就係一種根據以往選舉數據去推算未來趨勢嘅統計工具），
+  只用2025年之前嘅選舉資料，去預測2025年各政黨嘅得票率，然後同真實結果比較睇下準唔準。</p>
+  <div class="stat-grid three">
+    <div class="stat-card"><div class="stat-num">2,000次</div><div class="stat-label">電腦模擬計算次數</div></div>
+    <div class="stat-card"><div class="stat-num">約6個百分點</div><div class="stat-label">平均預測誤差</div></div>
+    <div class="stat-card"><div class="stat-num">約7個百分點</div><div class="stat-label">標準預測誤差</div></div>
+  </div>
+  <figure class="chart">
+      <img src="images/chart-06.png" alt="Predicted vs actual 2025 vote share">
+      <figcaption>圖5 —— 虛線係「預測」嘅得票率，實線係「真實」嘅得票率</figcaption>
+    </figure>
+  <p class="note">簡單講：呢個模型預測自由黨（Liberal）同保守黨（Conservative）2025年得票率好接近，
+  同真實結果差唔多，但係對細政黨（例如NDP）嘅預測誤差就比較大。</p>
+</section>
+<section class="panel" id="demographics">
+  <h2>人口年齡分析</h2>
+  <p class="lede">呢部分睇下加拿大唔同族群（例如：黑人、東亞人〔包括中國同香港〕、印度裔、白人）
+  嘅年齡分佈，用兩種方式表達：折線圖同熱力圖。</p>
+  <div class="chart-grid">
+    <figure class="chart">
+      <img src="images/chart-07.png" alt="Age group profile by group, Canada">
+      <figcaption>各族群喺唔同年齡層嘅人口比例（折線圖）</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-08.png" alt="Age group heatmap, Canada">
+      <figcaption>各族群喺唔同年齡層嘅人口比例（熱力圖，顏色越深比例越高）</figcaption>
+    </figure>
+  </div>
+  <p class="note">睇圖可以見到，東亞裔（包括香港、中國）人口喺25至44歲呢個年齡層比例最高，
+  代表呢個族群喺加拿大多數係中壯年人士。</p>
+</section>
+<section class="panel" id="economy">
+  <h2>四省經濟概況</h2>
+  <p class="lede">比較阿爾伯塔（AB）、卑詩（BC）、安大略（ON）、魁北克（QC）四個省份，
+  2021年同2025年嘅人口、GDP（本地生產總值）、失業率、人工、職位空缺等數字。</p>
+  <figure class="chart">
+      <img src="images/chart-09.png" alt="Economic indicator panel, four provinces">
+      <figcaption>GDP、失業率、平均週薪、職位空缺率 —— 四省2021 vs 2025比較</figcaption>
+    </figure>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>省份</th><th>年份</th><th>GDP（生產總值）</th><th>人均GDP</th><th>失業率</th><th>平均週薪</th><th>職位空缺率</th><th>人口</th></tr></thead>
+      <tbody>
+        <tr><td>阿爾伯塔 Alberta</td><td>2021</td><td>$3,801億</td><td>$85,761</td><td>3.75%</td><td>$1,324</td><td>3.78%</td><td>4,431,531</td></tr>
+        <tr><td>卑詩 British Columbia</td><td>2021</td><td>$3,570億</td><td>$68,304</td><td>2.94%</td><td>$1,243</td><td>5.69%</td><td>5,226,665</td></tr>
+        <tr><td>安大略 Ontario</td><td>2021</td><td>$9,701億</td><td>$65,363</td><td>3.46%</td><td>$1,246</td><td>4.52%</td><td>14,842,488</td></tr>
+        <tr><td>魁北克 Quebec</td><td>2021</td><td>$5,075億</td><td>$59,200</td><td>2.71%</td><td>$1,149</td><td>5.45%</td><td>8,572,020</td></tr>
+        <tr class="hl"><td>阿爾伯塔 Alberta</td><td>2025</td><td>$4,739億</td><td>$94,234</td><td>3.14%</td><td>$1,479</td><td>2.96%</td><td>5,029,346</td></tr>
+        <tr class="hl"><td>卑詩 British Columbia</td><td>2025</td><td>$4,291億</td><td>$75,311</td><td>2.68%</td><td>$1,443</td><td>3.26%</td><td>5,697,536</td></tr>
+        <tr class="hl"><td>安大略 Ontario</td><td>2025</td><td>$1兆1,970億</td><td>$73,625</td><td>3.21%</td><td>$1,436</td><td>2.58%</td><td>16,258,260</td></tr>
+        <tr class="hl"><td>魁北克 Quebec</td><td>2025</td><td>$6,168億</td><td>$68,089</td><td>2.45%</td><td>$1,354</td><td>2.92%</td><td>9,058,297</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">簡單講：阿爾伯塔嘅人均GDP同人工喺四省中最高，職位空缺率喺2025年亦都最低，
+  代表當地就業市場比較旺。</p>
+</section>
+<section class="panel" id="gdpage">
+  <h2>人均GDP同年齡中位數</h2>
+  <p class="lede">呢部分將四個省份（AB、BC、ON、QC）2022年嘅「人均GDP」（即每個人平均賺幾多錢）
+  同「年齡中位數」（即一半人口比呢個歲數大，一半比呢個歲數細）擺埋一齊比較。</p>
+  <div class="chart-grid">
+    <figure class="chart">
+      <img src="images/chart-10.png" alt="GDP per capita by province">
+      <figcaption>人均GDP —— 四省比較（2022年）</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-11.png" alt="Median age by province">
+      <figcaption>年齡中位數 —— 四省比較（2022年）</figcaption>
+    </figure>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>省份</th><th>年齡中位數</th><th>人口</th><th>GDP</th><th>人均GDP</th></tr></thead>
+      <tbody>
+        <tr><td>阿爾伯塔 Alberta</td><td>38.1歲</td><td>4,512,731</td><td>$4,564億</td><td>$101,145</td></tr>
+        <tr><td>卑詩 British Columbia</td><td>41.5歲</td><td>5,358,845</td><td>$3,722億</td><td>$69,456</td></tr>
+        <tr><td>安大略 Ontario</td><td>40.4歲</td><td>15,155,836</td><td>$9,878億</td><td>$65,176</td></tr>
+        <tr><td>魁北克 Quebec</td><td>42.8歲</td><td>8,669,963</td><td>$5,128億</td><td>$59,149</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">簡單講：阿爾伯塔嘅居民年齡係四省中最年輕，而且人均收入最高；魁北克居民年齡就係四省中最大。</p>
+</section>
+<section class="panel" id="hkoccupation">
+  <h2>香港移民同職業關係</h2>
+  <p class="lede">呢部分將香港移居加拿大嘅永久居民（PR）人數，
+  同「快速通道」（Express Entry，一種加拿大技術移民計劃）嘅職業類別數據連埋一齊，
+  睇下香港人移民之後多數從事邊啲行業。</p>
+  <div class="src-links">
+    <span>資料來源：</span>
+    <a href="https://www.ircc.canada.ca/opendata-donneesouvertes/data/EN_ODP-PR-Citz.xlsx" target="_blank">加拿大移民局－永久居民國籍統計</a>
+    <a href="https://ircc.canada.ca/opendata-donneesouvertes/data/EN_ODP-EE_Admissions-Occ.xlsx" target="_blank">加拿大移民局－快速通道職業統計</a>
+  </div>
+  <p class="note">因為官方冇獨立公開香港人職業嘅統計數字，所以呢部分改用「快速通道」嘅整體職業數據做參考
+  （程式入面叫呢個做「EE_PROXY」，即係代替數據嘅意思）。</p>
+  <figure class="chart">
+      <img src="images/chart-12.png" alt="HK main occupations 2021 vs 2025">
+      <figcaption>香港人相關嘅主要職業類別，2021年 vs 2025年比較（右邊數字越大代表人數越多）</figcaption>
+    </figure>
+</section>
+<section class="panel" id="xnlp">
+  <h2>社交媒體（X／Twitter）情緒預測</h2>
+  <p class="lede">呢部分淨係用社交媒體（X，即以前嘅Twitter）上面嘅留言數量同情緒，
+  去預測2025年選舉結果，再推算去2029年。2021年嘅資料嚟自2,086條實際留言
+  （分析咗1,902條），2025年就用一個叫「cardiffnlp」嘅AI情緒分析工具，
+  再重新分析1,651條唔重複嘅留言。</p>
+  <p class="note">⚠️ 注意：因為攞唔到2025年X嘅歷史留言資料（API用完咗配額），
+  所以2025年嘅數字係參考公開發表咗嘅圖表（Mozaik Analytics）推算出嚟，
+  並唔係直接由原始留言計算。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>年份</th><th>政黨</th><th>留言數量</th><th>負面</th><th>中立</th><th>正面</th><th>支持指數</th></tr></thead>
+      <tbody>
+        <tr><td>2021</td><td>自由黨 Liberal</td><td>772</td><td>14</td><td>731</td><td>27</td><td>0.017</td></tr>
+        <tr><td>2021</td><td>保守黨 Conservative</td><td>80</td><td>0</td><td>74</td><td>6</td><td>0.075</td></tr>
+        <tr><td>2021</td><td>新民主黨 NDP</td><td>44</td><td>0</td><td>39</td><td>5</td><td>0.114</td></tr>
+        <tr><td>2021</td><td>魁人政團 Bloc Québécois</td><td>13</td><td>0</td><td>13</td><td>0</td><td>0.000</td></tr>
+        <tr class="hl"><td>2025</td><td>自由黨 Liberal</td><td>802</td><td>17</td><td>761</td><td>24</td><td>0.009</td></tr>
+        <tr class="hl"><td>2025</td><td>保守黨 Conservative</td><td>139</td><td>1</td><td>133</td><td>5</td><td>0.029</td></tr>
+        <tr class="hl"><td>2025</td><td>魁人政團 Bloc Québécois</td><td>26</td><td>0</td><td>25</td><td>1</td><td>0.038</td></tr>
+        <tr class="hl"><td>2025</td><td>新民主黨 NDP</td><td>26</td><td>0</td><td>26</td><td>0</td><td>0.000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="chart-grid">
+    <figure class="chart">
+      <img src="images/chart-13.png" alt="X NLP trend 2021-2025">
+      <figcaption>各政黨支持指數變化趨勢，2021年到2025年</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-14.png" alt="X NLP predicted 2021 2025 2029">
+      <figcaption>推算去2029年嘅預測（用回歸模型）</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-15.png" alt="X NLP predicted vs actual 2025">
+      <figcaption>2025年「預測」同「真實」得票率比較（純社交媒體模型）</figcaption>
+    </figure>
+  </div>
+  <div class="chart-grid">
+    <figure class="chart">
+      <img src="images/chart-16.png" alt="X NLP chart 4">
+      <figcaption>補充圖表：社交媒體分析細節</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-17.png" alt="X NLP chart 5">
+      <figcaption>補充圖表：社交媒體分析細節</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-18.png" alt="X NLP chart 6">
+      <figcaption>補充圖表：社交媒體分析細節</figcaption>
+    </figure>
+  </div>
+</section>
+<section class="panel" id="factors">
+  <h2>邊個因素最能預測選舉？</h2>
+  <p class="lede">呢部分分別用「經濟數據」同「社交媒體情緒」呢兩種唔同嘅因素，
+  各自獨立去預測2025年選舉結果，再比較邊一個預測得比較準，
+  同埋邊一個因素對選舉結果嘅影響力比較大。</p>
+  <div class="stat-grid three">
+    <div class="stat-card"><div class="stat-num">經濟因素</div><div class="stat-label">預測最準確</div></div>
+    <div class="stat-card"><div class="stat-num">社交媒體</div><div class="stat-label">影響力最大（但預測誤差都較大）</div></div>
+    <div class="stat-card"><div class="stat-num">86.5%</div><div class="stat-label">四省人口佔全國比例（用嚟做加權計算）</div></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>政黨</th><th>經濟模型預測</th><th>社交媒體模型預測</th><th>真實結果</th></tr></thead>
+      <tbody>
+        <tr><td>自由黨 Liberal</td><td>34.72</td><td>56.70</td><td><b>43.76</b></td></tr>
+        <tr><td>保守黨 Conservative</td><td>35.30</td><td>19.70</td><td><b>41.31</b></td></tr>
+        <tr><td>新民主黨 NDP</td><td>15.38</td><td>9.84</td><td><b>6.29</b></td></tr>
+        <tr><td>魁人政團 Bloc Québécois</td><td>10.62</td><td>8.84</td><td><b>6.29</b></td></tr>
+        <tr><td>綠黨 Green</td><td>1.89</td><td>3.81</td><td><b>1.22</b></td></tr>
+        <tr><td>其他 Others</td><td>2.08</td><td>1.10</td><td><b>1.13</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figure class="chart">
+      <img src="images/chart-19.png" alt="Factor comparison chart">
+      <figcaption>兩種模型嘅2025年預測結果，同真實結果比較</figcaption>
+    </figure>
+  <p class="note">簡單講：整體嚟講，用「經濟數據」嚟預測會比較貼近真實結果；
+  「社交媒體情緒」雖然預測得唔太準，但係佢反映咗選舉前後民意變化幅度較大。</p>
+</section>
+<section class="panel" id="education">
+  <h2>邊種教育程度最能預測投票？</h2>
+  <p class="lede">加拿大統計局將教育程度分成好多種類別（例如：大學學士、碩士／博士、
+  高中程度等等）。呢部分測試每一種分類方法，邊一種可以最準確咁預測2025年選舉結果。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>教育程度分類</th><th>預測誤差（越細越好）</th><th>標準誤差</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>副學士／專科（Short-cycle tertiary）</td><td><b>5.45</b>（最準）</td><td>7.77</td></tr>
+        <tr><td>大專／大學程度</td><td>5.65</td><td>7.67</td></tr>
+        <tr><td>初中或以下</td><td>5.73</td><td>8.51</td></tr>
+        <tr><td>大專非學位課程</td><td>5.73</td><td>8.07</td></tr>
+        <tr><td>學士學位</td><td>6.47</td><td>8.96</td></tr>
+        <tr><td>碩士／博士</td><td>7.11</td><td>9.83</td></tr>
+        <tr><td>高中程度</td><td>7.91</td><td>9.61</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figure class="chart">
+      <img src="images/chart-20.png" alt="Best-fit education model vs actual">
+      <figcaption>用「最準確」嘅教育分類（副學士／專科）嚟預測，同真實2025年結果比較</figcaption>
+    </figure>
+  <p class="note">簡單講：「副學士／專科程度」嘅人口比例，係七種教育分類入面預測得最準嘅一種，
+  不過七種分類嘅準確度都差唔多，可見單靠教育程度嚟預測選舉結果，作用比較有限。</p>
+</section>
+<section class="panel" id="generation">
+  <h2>唔同年齡層點樣投票？</h2>
+  <p class="lede">呢部分預測2025年唔同年齡層（18至34歲、35至54歲、55歲或以上）
+  嘅投票取向，方法係參考過去四屆選舉（2011、2015、2019、2021年）嘅
+  人口、投票率同民調交叉分析數據嚟推算。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>年齡層</th><th>自由黨</th><th>保守黨</th><th>新民主黨</th><th>魁人政團</th><th>綠黨</th><th>其他</th></tr></thead>
+      <tbody>
+        <tr><td>18–34歲</td><td><b>47.08</b></td><td>27.57</td><td>12.55</td><td>5.93</td><td>2.61</td><td>4.27</td></tr>
+        <tr><td>35–54歲</td><td><b>43.04</b></td><td>38.95</td><td>7.86</td><td>6.01</td><td>1.49</td><td>2.65</td></tr>
+        <tr><td>55歲或以上</td><td><b>41.80</b></td><td>39.84</td><td>5.84</td><td>8.43</td><td>1.55</td><td>2.55</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="chart-grid">
+    <figure class="chart">
+      <img src="images/chart-21.png" alt="Voter generation party preference model 2025">
+      <figcaption>各年齡層預測嘅2025年政黨支持度</figcaption>
+    </figure>
+    <figure class="chart">
+      <img src="images/chart-22.png" alt="Voter generation prediction vs actual 2025">
+      <figcaption>模型推算結果 vs 2025年真實選舉結果</figcaption>
+    </figure>
+  </div>
+  <p class="note">簡單講：唔理邊個年齡層，自由黨都係支持度最高嘅政黨。
+  不過後生（18-34歲）比較支持自由黨同新民主黨，
+  而年長人士（55歲或以上）就相對比較支持保守黨同魁人政團。</p>
+</section>
+<section class="panel" id="hksr">
+  <h2>香港長者移民加拿大：適合度分析</h2>
+  <p class="lede">呢部分用幾個實際因素——租金、金錢（退休收入）、生活成本、醫療保障、居住環境同家庭網絡——分析香港長者搬去加拿大住，到底適唔適合。所有金額都用2025年數據，港元按平均匯率（1加元≈5.6港元）折算成加幣方便比較。</p>
+  <div class="src-links">
+    <span>資料來源：</span>
+    <a href="https://www.censtatd.gov.hk/en/data/stat_report/product/B1010002/att/B10100022025MM11B0100.pdf" target="_blank">香港政府統計處－租金數據</a>
+    <a href="https://www.hkej.com/dailynews/property/article/4220555/私樓呎租38.78元又破頂" target="_blank">香港私樓呎租（2025年新高）</a>
+    <a href="https://www.connectcre.ca/stories/average-apartment-asking-rents-decline-for-10th-straight-month/" target="_blank">加拿大租金（Rentals.ca／Urbanation）</a>
+    <a href="https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security.html" target="_blank">加拿大政府－OAS長者津貼</a>
+    <a href="https://www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement.html" target="_blank">加拿大政府－GIS保證入息補助</a>
+    <a href="https://www.swd.gov.hk/" target="_blank">香港社會福利署－長者津貼</a>
+    <a href="https://www.stheadline.com/lifetips/3415741/長者生活津貼2025" target="_blank">香港長者津貼金額（2025年）</a>
+    <a href="https://www.exchangerates.org.uk/HKD-CAD-spot-exchange-rates-history-2025.html" target="_blank">2025年港元兌加元匯率</a>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">$1,900</div><div class="stat-label">加拿大長者津貼上限（OAS＋GIS，每月加幣）</div></div>
+    <div class="stat-card"><div class="stat-num">10 年</div><div class="stat-label">新移民要住滿先合資格攞OAS／GIS</div></div>
+    <div class="stat-card"><div class="stat-num">約$39</div><div class="stat-label">香港私樓平均呎租（2025年，港元）</div></div>
+    <div class="stat-card"><div class="stat-num">3 個月</div><div class="stat-label">加拿大公立醫療新居民等候期</div></div>
+  </div>
+
+  <h3>① 租金：香港同加拿大一線城市差唔多，但貴過好多加拿大城市</h3>
+  <p class="lede">以「一房／約430平方呎」嘅單位計，香港島同九龍嘅租金同溫哥華、多倫多相若，但比卡加利、滿地可貴接近一倍。如果接受搬去平啲嘅城市，住屋開支會明顯細好多。</p>
+  <figure class="chart">
+    <img src="images/chart-23.png">
+    <figcaption>每月租金比較 —— 港元已按2025年平均匯率折算加幣</figcaption>
+  </figure>
+
+  <h3>② 金錢：加拿大津貼較多，但新移民頭10年係拎唔到嘅</h3>
+  <p class="lede">加拿大嘅長者退休津貼（OAS＋GIS）比香港長者津貼多，但有一個好關鍵嘅限制：要成為加拿大居民滿10年（18歲之後）先開始合資格，而且係按居住年期比例計。即係話，啱啱移民過去嘅長者頭10年係拎唔到任何政府津貼，要靠自己儲蓄或者家人供養。</p>
+  <figure class="chart">
+    <img src="images/chart-24.png">
+    <figcaption>長者每月收入支援比較（2025年最高金額，折算加幣）</figcaption>
+  </figure>
+  <p class="note">⚠️ 留意：香港嘅生果金／長生津有「居港限制」，要每年留喺香港住先繼續有得攞。一旦永久搬去加拿大，呢啲津貼會停，所以唔可以兩邊都攞。</p>
+
+  <h3>③ 生活成本：扣除租金之後，兩邊每個月開支其實差唔多</h3>
+  <p class="lede">基本使費（伙食、水電煤、交通、醫療自付）兩邊大約每個月都要加幣$1,200至$1,400，香港貴在伙食，加拿大貴在交通同藥費。</p>
+  <figure class="chart">
+    <img src="images/chart-25.png">
+    <figcaption>每月基本生活開支估算（不含租金，已折算加幣）</figcaption>
+  </figure>
+  <p class="note">呢個係粗略估算，實際使費因人而異：香港食飯同街市買餸較貴，但長者有「兩蚊乘車優惠」；加拿大餸菜較平，但交通月票、藥費同牙科自付項目較多。</p>
+
+  <h3>④ 醫療：加拿大公立醫療免費，但藥費、牙科同等候時間要留意</h3>
+  <ul class="toc-list">
+    <li><b>加拿大</b>：公立醫院同睇醫生免費（合資格居民），但新居民多數有<b>3個月等候期</b>先至受保障；普通藥費、牙科、眼科、聽覺唔包，長者要另外買保險或者靠省級藥物計劃。</li>
+    <li><b>香港</b>：公立醫療好平（專科門診約$50至$60港元），但輪候時間長；65歲以上長者每年有$2,000長者醫療券。</li>
+  </ul>
+
+  <h3>⑤ 整體適合度評分</h3>
+  <p class="lede">以下用七個因素，為「留住香港」同「移民加拿大」打分（5分最有利）。分數係估算，用作比較參考：</p>
+  <figure class="chart">
+    <img src="images/chart-26.png">
+    <figcaption>香港長者適合度因素評分（5分為最有利）</figcaption>
+  </figure>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>因素</th><th>香港</th><th>加拿大</th><th>解說</th></tr></thead>
+      <tbody>
+        <tr><td>住屋負擔</td><td>2</td><td>3</td><td>香港租金貴；加拿大貴城市（溫哥華／多倫多）相若，但卡加利、滿地可平好多</td></tr>
+        <tr class="hl"><td>生活成本</td><td>3</td><td>4</td><td>扣租後開支相近，但加拿大餸菜、生活空間相對容易負擔</td></tr>
+        <tr><td>退休收入</td><td>3</td><td>4</td><td>加拿大津貼較多，但新移民頭10年拎唔到，實際要睇儲蓄</td></tr>
+        <tr class="hl"><td>醫療保障</td><td>4</td><td>3</td><td>香港公立醫療平而普及；加拿大免費但要等，藥費／牙科自付</td></tr>
+        <tr><td>居住環境</td><td>3</td><td>4</td><td>加拿大空間大、空氣好，但天氣凍、冬天長</td></tr>
+        <tr class="hl"><td>家庭網絡</td><td>5</td><td>2</td><td>如果仔女已經喺加拿大，呢一項會完全反轉</td></tr>
+        <tr><td>語言文化</td><td>5</td><td>2</td><td>加拿大有列治文、萬錦等廣東話社區，適應會易啲</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stat-grid three">
+    <div class="stat-card"><div class="stat-num">比較適合</div><div class="stat-label">有積蓄或家人供養、鍾意空間大同天氣涼、唔介意醫療等候</div></div>
+    <div class="stat-card"><div class="stat-num">要留意</div><div class="stat-label">依賴香港政府津貼、身體長期要食藥、好怕凍嘅長者</div></div>
+    <div class="stat-card"><div class="stat-num">最穩陣做法</div><div class="stat-label">先申請「超級簽證」嚟加拿大住下，感受吓先決定</div></div>
+  </div>
+
+  <p class="note">💡 移民渠道：加拿大冇專門畀長者移民嘅計劃。仔女要係加拿大永久居民／公民，先可以透過「父母祖父母擔保計劃」（PGP，要抽籤兼輪候好耐）或者「超級簽證」（旅客身份、可續期，但冇OAS／GIS等居民福利，仲要買私人醫療保險）接父母過嚟。</p>
+</section>
+
+</main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
